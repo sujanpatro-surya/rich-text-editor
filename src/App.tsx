@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeConfig } from "@surya-digital/leo-reactjs-material-ui";
 import { darkColorPalette } from "./theme/color-palette/darkColorPalette";
