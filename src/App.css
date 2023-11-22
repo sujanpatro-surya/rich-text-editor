@@ -1,4 +1,4 @@
-/* body,
+body,
 html {
   display: flex;
   flex-direction: column;
@@ -15,6 +15,8 @@ html {
   flex-grow: 1;
   gap: 8px;
   width: 800px;
+
+  /* Below lines mean BODY1 typography is applied */
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.2px;
@@ -23,12 +25,6 @@ html {
 }
 
 .ProseMirror blockquote {
-  border-left: solid rgb(82, 68, 68) 2px;
-  padding-left: 8px;
-  font-style: italic;
-}
-
-.ProseMirror {
   border-left: solid rgb(82, 68, 68) 2px;
   padding-left: 8px;
   font-style: italic;
@@ -77,18 +73,9 @@ h3 {
   font-family: "Inter";
   font-size: 48px;
 }
-h2 {
-}
-h3 {
-}
 h4 {
 }
 h5 {
 }
 h6 {
 }
-
-a {
-  color: #8dc8baaa;
-  transition: 0.15s;
-} */

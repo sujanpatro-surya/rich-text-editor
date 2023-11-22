@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import useContentEditor from "./useContentEditor";
 import RemirrorEditor from "./RemirrorEditor";
 
@@ -21,12 +21,15 @@ const initialValue = `This is a rich text editor demo.
   2. Behave similarly`;
 
 const ProseMirror = (): React.ReactElement => {
-  const { editor, onEditorChange, markdownContent, setContent } =
+  const { editor, onEditorChange, markdownContent, htmlContent, setContent } =
     useContentEditor(initialValue);
 
   return (
     <Box>
       <RemirrorEditor editor={editor} onChange={onEditorChange} />
+
+      <pre>{markdownContent}</pre>
+      <pre>{htmlContent}</pre>
     </Box>
   );
 };

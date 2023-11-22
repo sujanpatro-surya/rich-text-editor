@@ -1,9 +1,7 @@
 import { useState } from "react";
 import getRemirrorExtensions from "./extensions";
 import {
-  ReactExtension,
   ReactExtensions,
-  UseRemirrorContextType,
   UseRemirrorReturn,
   useRemirror,
 } from "@remirror/react";
@@ -12,17 +10,18 @@ import {
   RemirrorEventListener,
   RemirrorEventListenerProps,
 } from "remirror";
-import { HeadingExtension } from "remirror/extensions";
 
 export interface UseContentEditorReturnType {
   editor: UseRemirrorReturn<ReactExtensions<any>>;
   onEditorChange: RemirrorEventListener<AnyExtension>;
-  markdownContent: string;
   setContent: (content: string) => void;
+  markdownContent: string;
+  htmlContent: string;
 }
 
 const useContentEditor = (value: string): UseContentEditorReturnType => {
   const [markdownContent, setMarkdownContent] = useState(value);
+  const [htmlContent, setHtmlContent] = useState(value);
   const extensions = getRemirrorExtensions;
   const editor = useRemirror({
     extensions,
@@ -41,6 +40,8 @@ const useContentEditor = (value: string): UseContentEditorReturnType => {
       parameter.state
     );
     setMarkdownContent(updatedMarkdownContent);
+    const updatedHTMLContent = parameter.helpers.getHTML(parameter.state);
+    setHtmlContent(updatedHTMLContent);
     onChange(parameter);
   };
 
@@ -59,6 +60,7 @@ const useContentEditor = (value: string): UseContentEditorReturnType => {
     onEditorChange,
     setContent,
     markdownContent,
+    htmlContent,
   };
 };
 

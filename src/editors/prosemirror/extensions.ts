@@ -1,4 +1,3 @@
-import { ExtensionPriority } from "remirror";
 import {
   BlockquoteExtension,
   BoldExtension,
@@ -8,7 +7,6 @@ import {
   OrderedListExtension,
   BulletListExtension,
   LinkExtension,
-  ListItemExtension,
   StrikeExtension,
   TextHighlightExtension,
   UnderlineExtension,
@@ -60,10 +58,6 @@ const getRemirrorExtensions = () => [
   new OrderedListExtension(),
   new LinkExtension({ autoLink: true }),
   new BulletListExtension({ enableSpine: true }),
-  new ListItemExtension({
-    // enableCollapsible: true,
-    priority: ExtensionPriority.High,
-  }),
   new StrikeExtension(),
   new TextHighlightExtension(),
   new BlockquoteExtension(),
