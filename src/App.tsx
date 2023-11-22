@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeConfig } from "@surya-digital/leo-reactjs-material-ui";
+import { darkColorPalette } from "./theme/color-palette/darkColorPalette";
+import { lightColorPalette } from "./theme/color-palette/lightColorPalette";
+import { typographyStyles } from "./theme/typography/typographyStyles";
+import DraftJS from "./editors/draft-js/draftJs";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeConfig
+      theme="light"
+      baseColorTokens={[
+        { name: "light", colorTokens: lightColorPalette },
+        { name: "dark", colorTokens: darkColorPalette },
+      ]}
+      typography={typographyStyles}
+    >
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<DraftJS />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeConfig>
   );
 }
-
-export default App;
