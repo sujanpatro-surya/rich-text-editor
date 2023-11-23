@@ -16,6 +16,8 @@ const getBlockStyle = (block: ContentBlock) => {
   switch (block.getType()) {
     case "blockquote":
       return "RichEditor-blockquote";
+    case "header-one":
+      return "headerOne";
     default:
       return "";
   }
