@@ -3,7 +3,8 @@ import { ThemeConfig } from "@surya-digital/leo-reactjs-material-ui";
 import { darkColorPalette } from "./theme/color-palette/darkColorPalette";
 import { lightColorPalette } from "./theme/color-palette/lightColorPalette";
 import { typographyStyles } from "./theme/typography/typographyStyles";
-import DraftJS from "./editors/draft-js/DraftJS";
+import MediaEditorExample from "./editors/draft-js/addMediaButtonsEditor/testEditor";
+import CustomImageEditor from "./editors/draft-js/pluginsEditor/pluginEditor";
 
 export default function App() {
   return (
@@ -17,7 +18,7 @@ export default function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<DraftJS />} />
+          <Route path="/" element={<CustomImageEditor />} />
         </Routes>
       </BrowserRouter>
     </ThemeConfig>

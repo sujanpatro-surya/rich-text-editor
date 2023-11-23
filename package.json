@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@draft-js-plugins/drag-n-drop": "^4.2.3",
+    "@draft-js-plugins/editor": "^4.1.4",
+    "@draft-js-plugins/focus": "^4.1.5",
+    "@draft-js-plugins/image": "^4.1.4",
     "@mui/material": "^5.10.0",
     "@surya-digital/leo-reactjs-material-ui": "^0.0.132",
     "@testing-library/jest-dom": "^5.17.0",
@@ -45,6 +49,8 @@
     ]
   },
   "devDependencies": {
-    "@types/draft-js": "^0.11.16"
+    "@types/draft-js": "^0.11.16",
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3"
   }
 }
