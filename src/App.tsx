@@ -3,7 +3,7 @@ import { ThemeConfig } from "@surya-digital/leo-reactjs-material-ui";
 import { darkColorPalette } from "./theme/color-palette/darkColorPalette";
 import { lightColorPalette } from "./theme/color-palette/lightColorPalette";
 import { typographyStyles } from "./theme/typography/typographyStyles";
-import DraftJS from "./editors/draft-js/draftJs";
+import DraftJS from "./editors/draft-js/DraftJS";
 
 export default function App() {
   return (
