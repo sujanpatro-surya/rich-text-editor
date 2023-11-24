@@ -1,4 +1,4 @@
-import React, { useRef, useState, FC } from "react";
+import React, { useRef, useState } from "react";
 import { convertFromRaw, EditorState, RawDraftContentState } from "draft-js";
 import Editor, { composeDecorators } from "@draft-js-plugins/editor";
 import createImagePlugin from "@draft-js-plugins/image";
