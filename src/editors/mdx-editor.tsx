@@ -1,7 +1,48 @@
 import "@mdxeditor/editor/style.css";
-import { MDXEditor, headingsPlugin } from "@mdxeditor/editor";
-const SomeThing = (): React.ReactElement => {
-  return <MDXEditor markdown={"# Hello World"} plugins={[headingsPlugin()]} />;
+import "./style.css";
+import {
+  MDXEditor,
+  MDXEditorMethods,
+  headingsPlugin,
+  markdownShortcutPlugin,
+  listsPlugin,
+  quotePlugin,
+  thematicBreakPlugin,
+  toolbarPlugin,
+  BoldItalicUnderlineToggles,
+} from "@mdxeditor/editor";
+import { useRef, useState } from "react";
+const MdxEditor = (): React.ReactElement => {
+  const mdRef = useRef<MDXEditorMethods>(null);
+  const [mdState, setMdState] = useState(`Hello 
+  - - -
+  World
+  - - -
+  `);
+  return (
+    <MDXEditor
+      className="editorHeaderOne"
+      ref={mdRef}
+      markdown={mdState}
+      plugins={[
+        headingsPlugin(),
+        markdownShortcutPlugin(),
+        listsPlugin(),
+        quotePlugin(),
+        thematicBreakPlugin(),
+        toolbarPlugin({
+          toolbarContents: (): React.ReactElement => {
+            return (
+              <>
+                <BoldItalicUnderlineToggles />
+              </>
+            );
+          },
+        }),
+      ]}
+      onChange={setMdState}
+    />
+  );
 };
 
-export default SomeThing;
+export default MdxEditor;
