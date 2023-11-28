@@ -3,6 +3,7 @@ import {
   BoldExtension,
   HeadingExtension,
   ImageExtension,
+  ImageOptions,
   ItalicExtension,
   OrderedListExtension,
   BulletListExtension,
@@ -21,6 +22,7 @@ import {
   FileExtension,
 } from "@remirror/extension-file";
 import languages from "./languages";
+import { DelayedPromiseCreator } from "@remirror/core";
 import { textblockTypeInputRule } from "@remirror/pm/inputrules";
 
 class ExtendedCodeBlockExtension extends CodeBlockExtension {
@@ -49,13 +51,19 @@ class ExtendedCodeBlockExtension extends CodeBlockExtension {
 //   },
 // ];
 
+// const imageOptions: ImageOptions = {
+//   enableResizing: true,
+//   uploadHandler(files) {
+//   },
+// };
+
 const getRemirrorExtensions = () => [
   new HeadingExtension(),
   new BoldExtension({}),
   new ItalicExtension(),
   new UnderlineExtension(),
-  new ImageExtension({ enableResizing: true }),
   new OrderedListExtension(),
+  new ImageExtension(),
   new LinkExtension({ autoLink: true }),
   new BulletListExtension({ enableSpine: true }),
   new StrikeExtension(),

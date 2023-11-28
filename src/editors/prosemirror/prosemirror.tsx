@@ -25,12 +25,12 @@ const ProseMirror = (): React.ReactElement => {
     useContentEditor(initialValue);
 
   return (
-    <Box>
+    <Stack>
       <RemirrorEditor editor={editor} onChange={onEditorChange} />
 
-      <pre>{markdownContent}</pre>
-      <pre>{htmlContent}</pre>
-    </Box>
+      <pre style={{ width: "400px" }}>{markdownContent}</pre>
+      {/* <pre style={{ width: "400px" }}>{htmlContent}</pre> */}
+    </Stack>
   );
 };
 
