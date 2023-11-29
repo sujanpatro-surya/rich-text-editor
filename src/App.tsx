@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { darkColorPalette } from "./theme/color-palette/darkColorPalette";
 import { lightColorPalette } from "./theme/color-palette/lightColorPalette";
 import { typographyStyles } from "./theme/typography/typographyStyles";
+import QuillEditor from "./editors/Quill";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<></>} />
+          <Route path="/" element={<QuillEditor />} />
         </Routes>
       </BrowserRouter>
     </ThemeConfig>
