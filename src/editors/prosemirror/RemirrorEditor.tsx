@@ -24,8 +24,14 @@ const RemirrorEditor = ({
 }): React.ReactElement => {
   return (
     // <AllStyledComponent>
-    <Remirror manager={manager} state={state} onChange={onChange} autoFocus>
-      <Toolbar style={typographyStyles.body1}>
+    <Remirror
+      manager={manager}
+      state={state}
+      onChange={onChange}
+      autoFocus
+      editable={true}
+    >
+      <Toolbar>
         <BasicFormattingButtonGroup />
         <HeadingLevelButtonGroup showAll />
         <ToggleOrderedListButton />
