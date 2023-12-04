@@ -1,4 +1,6 @@
 import * as React from "react";
+import "trix";
+import "trix/dist/trix.css";
 
 export interface MergeTag {
   tag: string;
@@ -19,9 +21,10 @@ export interface TrixEditorProps {
   uploadURL?: string;
   uploadData?: { [key: string]: string };
   fileParamName?: string;
+  readonly?: boolean;
 
   /* list of available merge tag */
-  mergeTags: Array<MergeTags>;
+  mergeTags?: Array<MergeTags>;
 
   onEditorReady?: (editor: any) => void;
   onChange: (html: string, text: string) => void;
@@ -49,7 +52,7 @@ export interface Rect {
   height: number;
 }
 
-export class TrixEditors extends React.Component<
+export class TrixEditor extends React.Component<
   TrixEditorProps,
   TrixEditorState
 > {
@@ -283,6 +286,14 @@ export class TrixEditors extends React.Component<
       attributes["toolbar"] = props.toolbar;
     }
 
+    if (props.readonly !== undefined) {
+      console.log("changed readonly to: ", props.readonly);
+      attributes["contentEditable"] = "true";
+    } else {
+      console.log("changed readonly to: ", props.readonly);
+      attributes["contentEditable"] = "false";
+    }
+
     let mergetags: React.ReactNode = null;
     if (state.showMergeTags) {
       mergetags = this.renderTagSelector(state.tags);
@@ -293,7 +304,7 @@ export class TrixEditors extends React.Component<
         ref={(d) => d && (this.d = d)}
         style={{ position: "relative" }}
       >
-        {React.createElement("trix-editors", attributes)}
+        {React.createElement("trix-editor", attributes)}
         <input type="hidden" id={`input-${this.id}`} value={this.props.value} />
         {mergetags}
       </div>
