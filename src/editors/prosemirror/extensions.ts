@@ -17,6 +17,7 @@ import {
   // MentionAtomExtension,
   // MentionAtomExtensionMatcher,
 } from "remirror/extensions";
+import { TableExtension } from "@remirror/extension-react-tables";
 import {
   createSlowFileUploader,
   FileExtension,
@@ -71,6 +72,7 @@ const getRemirrorExtensions = () => [
   new BlockquoteExtension(),
   new MarkdownExtension({ copyAsMarkdown: true }),
   new CodeExtension(),
+  new TableExtension(),
   new ExtendedCodeBlockExtension({
     supportedLanguages: languages,
   }),
