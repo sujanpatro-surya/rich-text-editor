@@ -1,17 +1,57 @@
 import { Box } from "@mui/material";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent, useEditor, Editor } from "@tiptap/react";
 import { StarterKit } from "@tiptap/starter-kit";
 import { Image as TipTapImage } from "@tiptap/extension-image";
 import axios from "axios";
 import "./styles.css";
 import { EditorView } from "prosemirror-view";
+import { useState } from "react";
 
 const TipTapEditor = (): React.ReactElement => {
-  const extensions = [
-    StarterKit,
-    TipTapImage.configure({ allowBase64: false, inline: true }),
-  ];
-  const content = `
+  const [content, setContent] = useState(initialContent);
+  const editor = useEditor({
+    extensions: editorExtensions,
+    content: content,
+    editable: true,
+    editorProps: {
+      handleDrop(view, event, slice, moved) {
+        if (
+          !moved &&
+          event.dataTransfer &&
+          event.dataTransfer.files &&
+          event.dataTransfer.files[0]
+        ) {
+          let file = event.dataTransfer.files[0];
+          if (supportedImageTypes.includes(file.type))
+            handleImage(file, view, event, editor);
+          else {
+            console.log(file.type);
+            return false;
+          }
+          return true;
+        }
+        return false;
+      },
+    },
+    onUpdate(props) {
+      console.log("\nJSON content:\n", props.editor.getJSON());
+      console.log("\nHTML content:\n", props.editor.getHTML());
+      setContent(props.editor.getHTML());
+    },
+  });
+  return (
+    <Box>
+      <EditorContent editor={editor} />
+    </Box>
+  );
+};
+
+const editorExtensions = [
+  StarterKit,
+  TipTapImage.configure({ allowBase64: false, inline: true }),
+];
+
+const initialContent = `
     <h2>
     Hi there,
     </h2>
@@ -41,37 +81,6 @@ const TipTapEditor = (): React.ReactElement => {
     — Mom
     </blockquote>
     `;
-  const editor = useEditor({
-    extensions,
-    content,
-    editable: true,
-    editorProps: {
-      handleDrop(view, event, slice, moved) {
-        if (
-          !moved &&
-          event.dataTransfer &&
-          event.dataTransfer.files &&
-          event.dataTransfer.files[0]
-        ) {
-          let file = event.dataTransfer.files[0];
-          if (supportedImageTypes.includes(file.type))
-            handleImage(file, view, event);
-          else {
-            console.log(file.type);
-            return false;
-          }
-          return true;
-        }
-        return false;
-      },
-    },
-  });
-  return (
-    <Box>
-      <EditorContent editor={editor} />
-    </Box>
-  );
-};
 
 const handleFile = (file: File, view: EditorView, event: DragEvent): void => {
   console.log("file detected");
@@ -89,7 +98,12 @@ const handleFile = (file: File, view: EditorView, event: DragEvent): void => {
   });
 };
 
-const handleImage = (file: File, view: EditorView, event: DragEvent): void => {
+const handleImage = (
+  file: File,
+  view: EditorView,
+  event: DragEvent,
+  editor: Editor | null
+): void => {
   console.log("image detected");
   const urlType = window.URL || window.webkitURL;
   const img = new Image();
@@ -98,7 +112,7 @@ const handleImage = (file: File, view: EditorView, event: DragEvent): void => {
     console.log("image.onLoad called");
     uploadImage(file).then((url: string) => {
       console.log("url found.", url);
-      // editor?.chain().focus().setImage({ src: url });
+      // editor?.commands.insertContent();
       const { schema } = view.state;
       const coordinates = view.posAtCoords({
         left: event.clientX,
@@ -121,9 +135,5 @@ const uploadImage = (imageFile: File): Promise<string> => {
     }, 2000);
   });
 };
-
-// const getImageUrl = (rpcResponse: string): Promise<string> => {
-//   return axios.post(rpcResponse);
-// };
 
 export default TipTapEditor;
