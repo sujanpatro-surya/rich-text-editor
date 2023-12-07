@@ -14,6 +14,7 @@ import {
   MarkdownExtension,
   CodeExtension,
   CodeBlockExtension,
+  IframeExtension,
   // MentionAtomExtension,
   // MentionAtomExtensionMatcher,
 } from "remirror/extensions";
@@ -32,6 +33,8 @@ class ExtendedCodeBlockExtension extends CodeBlockExtension {
     return [textblockTypeInputRule(regexp, this.type)];
   }
 }
+
+const linkExtension = new LinkExtension({ autoLink: true });
 
 // const matchers: MentionAtomExtensionMatcher[] = [
 //   {
@@ -65,7 +68,7 @@ const getRemirrorExtensions = () => [
   new UnderlineExtension(),
   new OrderedListExtension(),
   new ImageExtension(),
-  new LinkExtension({ autoLink: true }),
+  linkExtension,
   new BulletListExtension({ enableSpine: true }),
   new StrikeExtension(),
   new TextHighlightExtension(),
@@ -73,6 +76,7 @@ const getRemirrorExtensions = () => [
   new MarkdownExtension({ copyAsMarkdown: true }),
   new CodeExtension(),
   new TableExtension(),
+  new IframeExtension(),
   new ExtendedCodeBlockExtension({
     supportedLanguages: languages,
   }),

@@ -12,10 +12,13 @@ const initialValue = `This is a rich text editor demo.
   // And so are
   console.log("Code blocks with syntax highlighting");
   \`\`\`
-  
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/OMBEtL6-mnU?si=wlC7chR_Pq_KG6O0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
   - Lists
   - Work
   - As well
+  
   
   | Name                 | Type                | Description                                                                                                                                                                                                          |
 | -------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -45,7 +48,7 @@ const ProseMirror = (): React.ReactElement => {
       <RemirrorEditor editor={editor} onChange={onEditorChange} />
 
       <pre style={{ width: "400px" }}>{markdownContent}</pre>
-      {/* <pre style={{ width: "400px" }}>{htmlContent}</pre> */}
+      <pre style={{ width: "400px" }}>{htmlContent}</pre>
     </Stack>
   );
 };

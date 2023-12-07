@@ -10,10 +10,23 @@ import {
   ToggleBulletListButton,
   ToggleOrderedListButton,
   ToggleCodeBlockButton,
+  CreateTableButton,
+  useCommands,
 } from "@remirror/react";
 import { AnyExtension, RemirrorEventListener } from "remirror";
 import { AllStyledComponent } from "@remirror/styles/emotion";
 import { typographyStyles } from "../../theme/typography/typographyStyles";
+
+const AddEmbedButton = () => {
+  const commands = useCommands();
+  const handleClick = () =>
+    commands.addIframe({
+      src: "https://remirror.io/",
+      height: 250,
+      width: 500,
+    });
+  return <button onClick={handleClick}>Add embed</button>;
+};
 
 const RemirrorEditor = ({
   editor: { manager, state },
@@ -24,23 +37,27 @@ const RemirrorEditor = ({
 }): React.ReactElement => {
   return (
     // <AllStyledComponent>
-    <Remirror
-      manager={manager}
-      state={state}
-      onChange={onChange}
-      autoFocus
-      editable={true}
-    >
-      <Toolbar>
-        <BasicFormattingButtonGroup />
-        <HeadingLevelButtonGroup showAll />
-        <ToggleOrderedListButton />
-        <ToggleBulletListButton />
-        <ToggleBlockquoteButton />
-        <ToggleCodeBlockButton />
-      </Toolbar>
-      <EditorComponent />
-    </Remirror>
+    <>
+      <Remirror
+        manager={manager}
+        state={state}
+        onChange={onChange}
+        autoFocus
+        editable={true}
+      >
+        <Toolbar>
+          <BasicFormattingButtonGroup />
+          <HeadingLevelButtonGroup showAll />
+          <ToggleOrderedListButton />
+          <ToggleBulletListButton />
+          <ToggleBlockquoteButton />
+          <ToggleCodeBlockButton />
+          <CreateTableButton />
+        </Toolbar>
+        <EditorComponent />
+        <AddEmbedButton />
+      </Remirror>
+    </>
     // </AllStyledComponent>
   );
 };

@@ -42,6 +42,7 @@ const useContentEditor = (value: string): UseContentEditorReturnType => {
     setMarkdownContent(updatedMarkdownContent);
     const updatedHTMLContent = parameter.helpers.getHTML(parameter.state);
     setHtmlContent(updatedHTMLContent);
+    console.log(parameter.helpers.getJSON(parameter.state));
     onChange(parameter);
   };
 
