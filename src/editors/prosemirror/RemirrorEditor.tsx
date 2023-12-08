@@ -12,6 +12,7 @@ import {
   ToggleCodeBlockButton,
   CreateTableButton,
   useCommands,
+  TableComponents,
 } from "@remirror/react";
 import { AnyExtension, RemirrorEventListener } from "remirror";
 import { AllStyledComponent } from "@remirror/styles/emotion";
@@ -55,6 +56,7 @@ const RemirrorEditor = ({
           <CreateTableButton />
         </Toolbar>
         <EditorComponent />
+        <TableComponents />
         <AddEmbedButton />
       </Remirror>
     </>
