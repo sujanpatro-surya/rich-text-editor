@@ -52,21 +52,21 @@ html {
   column-gap: 8px;
 }
 
-h1 {
+.remirror-editor h1 {
   font-weight: 700;
   line-height: 132px;
   letter-spacing: -1.5px;
   font-family: "Inter";
   font-size: 96px;
 }
-h2 {
+.remirror-editor h2 {
   font-weight: 700;
   line-height: 84px;
   letter-spacing: -1px;
   font-family: "Inter";
   font-size: 60px;
 }
-h3 {
+.remirror-editor h3 {
   font-weight: 700;
   line-height: 64px;
   letter-spacing: -0.5px;

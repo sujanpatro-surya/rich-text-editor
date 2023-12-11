@@ -1,4 +1,3 @@
-import { Box, Toolbar } from "@mui/material";
 import {
   UseRemirrorReturn,
   ReactExtensions,
@@ -9,14 +8,19 @@ import {
   ToggleBlockquoteButton,
   ToggleBulletListButton,
   ToggleOrderedListButton,
+  ToggleBoldButton,
   ToggleCodeBlockButton,
   CreateTableButton,
   useCommands,
   TableComponents,
+  ToggleTaskListButton,
+  ListButtonGroup,
+  Toolbar,
 } from "@remirror/react";
 import { AnyExtension, RemirrorEventListener } from "remirror";
 import { AllStyledComponent } from "@remirror/styles/emotion";
 import { typographyStyles } from "../../theme/typography/typographyStyles";
+import { AlertCircle, Button } from "@surya-digital/leo-reactjs-material-ui";
 
 const AddEmbedButton = () => {
   const commands = useCommands();
@@ -37,30 +41,30 @@ const RemirrorEditor = ({
   onChange: RemirrorEventListener<AnyExtension>;
 }): React.ReactElement => {
   return (
-    // <AllStyledComponent>
-    <>
-      <Remirror
-        manager={manager}
-        state={state}
-        onChange={onChange}
-        autoFocus
-        editable={true}
-      >
-        <Toolbar>
-          <BasicFormattingButtonGroup />
-          <HeadingLevelButtonGroup showAll />
-          <ToggleOrderedListButton />
-          <ToggleBulletListButton />
-          <ToggleBlockquoteButton />
-          <ToggleCodeBlockButton />
-          <CreateTableButton />
-        </Toolbar>
-        <EditorComponent />
-        <TableComponents />
-        <AddEmbedButton />
-      </Remirror>
-    </>
-    // </AllStyledComponent>
+    <AllStyledComponent>
+      <>
+        <Remirror
+          manager={manager}
+          state={state}
+          onChange={onChange}
+          autoFocus
+          editable={true}
+        >
+          <Toolbar>
+            <BasicFormattingButtonGroup />
+            <HeadingLevelButtonGroup showAll />
+            <ToggleOrderedListButton />
+            <ToggleBulletListButton />
+            <ToggleBlockquoteButton />
+            <ToggleCodeBlockButton />
+            <CreateTableButton />
+          </Toolbar>
+          <EditorComponent />
+          <TableComponents />
+          <AddEmbedButton />
+        </Remirror>
+      </>
+    </AllStyledComponent>
   );
 };
 
