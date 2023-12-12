@@ -17,6 +17,7 @@ import {
   CodeBlockExtension,
   IframeExtension,
   TaskListItemExtension,
+  HistoryExtension,
   // MentionAtomExtension,
   // MentionAtomExtensionMatcher,
 } from "remirror/extensions";
@@ -64,6 +65,7 @@ const linkExtension = new LinkExtension({ autoLink: true });
 // };
 
 const getRemirrorExtensions = () => [
+  new HistoryExtension({ depth: 10 }),
   new HeadingExtension(),
   new BoldExtension({}),
   new ItalicExtension(),

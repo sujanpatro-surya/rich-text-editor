@@ -16,11 +16,13 @@ import {
   ToggleTaskListButton,
   ListButtonGroup,
   Toolbar,
+  HistoryButtonGroup,
 } from "@remirror/react";
 import { AnyExtension, RemirrorEventListener } from "remirror";
 import { AllStyledComponent } from "@remirror/styles/emotion";
 import { typographyStyles } from "../../theme/typography/typographyStyles";
-import { AlertCircle, Button } from "@surya-digital/leo-reactjs-material-ui";
+import { AlertCircle } from "@surya-digital/leo-reactjs-material-ui";
+import { useState } from "react";
 
 const AddEmbedButton = () => {
   const commands = useCommands();
@@ -40,6 +42,7 @@ const RemirrorEditor = ({
   editor: UseRemirrorReturn<ReactExtensions<AnyExtension>>;
   onChange: RemirrorEventListener<AnyExtension>;
 }): React.ReactElement => {
+  const [editableState, setEditableState] = useState(true);
   return (
     <AllStyledComponent>
       <>
@@ -48,21 +51,29 @@ const RemirrorEditor = ({
           state={state}
           onChange={onChange}
           autoFocus
-          editable={true}
+          editable={editableState}
         >
-          <Toolbar>
-            <BasicFormattingButtonGroup />
-            <HeadingLevelButtonGroup showAll />
-            <ToggleOrderedListButton />
-            <ToggleBulletListButton />
-            <ToggleBlockquoteButton />
-            <ToggleCodeBlockButton />
-            <CreateTableButton />
-          </Toolbar>
+          {editableState ? (
+            <Toolbar>
+              <HistoryButtonGroup />
+              <BasicFormattingButtonGroup />
+              <HeadingLevelButtonGroup showAll />
+              <ToggleOrderedListButton />
+              <ToggleBulletListButton />
+              <ToggleBlockquoteButton />
+              <ToggleCodeBlockButton />
+              <CreateTableButton />
+            </Toolbar>
+          ) : (
+            <></>
+          )}
           <EditorComponent />
           <TableComponents />
           <AddEmbedButton />
         </Remirror>
+        <button onClick={() => setEditableState(!editableState)}>
+          save/edit
+        </button>
       </>
     </AllStyledComponent>
   );
